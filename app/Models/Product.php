@@ -2,21 +2,35 @@
 
 namespace App\Models;
 
+use App\Enums\ProductCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model
+class Product extends Model implements HasMedia
 {
+    use HasFactory, InteractsWithMedia;
 
-    use HasFactory;
-    protected $dateFormat = 'U';
-    const CREATED_AT = 'datetime';
-    public $timestamps = false;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'category',
         'description',
-        'datetime',
+        'date_time'
     ];
 
+    /**
+     * The attributes that should be cast.
+     * 
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'category' => ProductCategory::class,
+        'date_time' => 'datetime'
+    ];
 }

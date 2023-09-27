@@ -1,42 +1,21 @@
 {
     "private": true,
+    "type": "module",
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
+        "dev": "vite --force",
+        "build": "vite build"
     },
     "devDependencies": {
-        "axios": "^0.21",
-        "bootstrap": "^4.5.3",
-        "jquery": "^3.2",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "popper.js": "^1.12",
-        "postcss": "^8.1.14",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
-        "sass-loader": "^8.0.0",
-        "video.js": "^7.10.2",
-        "vue": "^2.6.12",
-        "vue-loader": "^15.9.5",
-        "vue-template-compiler": "^2.6.10"
+        "axios": "^1.1.2",
+        "laravel-vite-plugin": "^0.8.0",
+        "vite": "^4.0.0"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.1",
-        "@popperjs/core": "^2.6.0",
-        "bootstrap-vue": "^2.21.2",
-        "icheck-bootstrap": "^3.0.1",
-        "laravel-vue-datatable": "^0.6.0",
-        "laravel-vue-pagination": "^2.3.1",
-        "moment": "^2.29.1",
-        "overlayscrollbars": "^1.13.1",
-        "portal-vue": "^2.1.7",
-        "videojs-youtube": "^2.6.1",
-        "vuejs-datatable": "^2.0.0-alpha.7",
-        "vuelidate": "^0.7.6"
+        "@ckeditor/ckeditor5-build-classic": "^39.0.1",
+        "@ckeditor/ckeditor5-vue": "^5.1.0",
+        "@vitejs/plugin-vue": "^4.3.4",
+        "@vuepic/vue-datepicker": "^6.0.3",
+        "video.js": "^8.5.2",
+        "vue-sweetalert2": "^5.0.5"
     }
 }

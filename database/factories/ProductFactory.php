@@ -2,35 +2,29 @@
 
 namespace Database\Factories;
 
-use App\Models\Product;
-use App\Providers\FakerServiceProvider;
-use Bezhanov\Faker\ProviderCollectionHelper;
+use App\Enums\ProductCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ */
 class ProductFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Product::class;
-
-    /**
      * Define the model's default state.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
-        $faker = \Faker\Factory::create();
-        \Bezhanov\Faker\ProviderCollectionHelper::addAllProvidersTo($faker);
-        $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
         return [
-            'name' => $faker->productName,
-            'category' => $faker->department(1, true),
-            'description' => $this->faker->sentence(20),
-            'datetime'  => $this->faker->dateTime(),
+            'name' => fake()->word,
+            'category' => fake()->randomElement(array_map(
+                fn(ProductCategory $category) => $category->value, 
+                ProductCategory::cases()
+            )),
+            'description' => fake()->realText(),
+            'date_time' => fake()->dateTimeThisYear()
         ];
     }
 }

@@ -1,20 +1,23 @@
-@extends('adminlte::page')
+@extends('layouts.app', [
+    'bodyClass' => 'hold-transition sidebar-mini layout-fixed'
+])
 
-@section('title', 'Dashboard')
-
+@push('metas')
+<meta name="access-token" content="{{ $token }}">
+@endpush
 
 @section('content')
-<div id="app">
-    <video-link></video-link>
-</div>
-@stop
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="app" class="col col-md-8 mx-auto">
+                <videos-component />
+            </div>
+        </div>
+    </div>
+</section>
+@endsection
 
-@section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-<script>
-    console.log('Hi!');
-</script>
-@stop
+@push('scripts')
+    @vite(['resources/js/app.js'])
+@endpush

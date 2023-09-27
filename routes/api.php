@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\VideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,13 +11,12 @@ use App\Http\Controllers\ProductController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('products', ProductController::class);
+    Route::get('videos', [VideoController::class, 'videos'])->name('videos');
 });
-Route::get('product', 'ProductController@allProduct');
-Route::get('category', 'ProductController@productDescription');
-Route::get('product/{id}', 'ProductController@show');

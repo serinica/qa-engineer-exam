@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\VideoLinkController;
+use App\Http\Controllers\VideoController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,28 +11,23 @@ use App\Http\Controllers\VideoLinkController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+        Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::get('form/{product?}', [ProductController::class, 'form'])->name('form');
+    });
+
+    Route::get('videos', [VideoController::class, 'videos'])->name('videos');
+});
+
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
+Route::post('login', [LoginController::class, 'login'])->name('login.post');
+
 Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
-
-Auth::routes();
-// Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/list',[App\Http\Controllers\ProductController::class, 'index'])->middleware('auth');
-Route::get('/video', [App\Http\Controllers\VideoLinkController::class, 'index'])->middleware('auth');
-
-Route::delete('product/{product}', 'ProductController@destroy');
-Route::post('product', 'ProductController@store');
-Route::put('product', 'ProductController@update');
-Route::get('/create', [App\Http\Controllers\ProductController::class, 'createView'])->name('create.view');
-
-
-Route::post('video','VideoLinkController@saveVideoURL');
-Route::get('video/url', 'VideoLinkController@getVideoURL');
-Route::get('videos/{video}','VideoLinkController@getSingleVideo');
-// Route::resource('products', ProductController::class);
+    return redirect()->route('login');
+});
