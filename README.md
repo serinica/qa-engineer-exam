@@ -89,14 +89,25 @@
 
 ## Requirements (Accomplished)
 -Unit Test
+
     Test > Unit > ExamUnitTest.php
+    
 -HTTP Test
+
     Test > Feature > ExampleTest.php
+    
 -Browser Test
+
     Test > Browser 
+    
 -Database Test
+
     Test > Feature > DatabaseTest.php
+    
 -Vue JS Tests
+
     Added Vitetest
+    
 -CI/CD
+
     Github Repository Actions > Laravel.yml
