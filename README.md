@@ -76,10 +76,12 @@
         $   php artisan serve
 
 11.  For Running implemented Laravel Tests (Unit Tests/ HTTP Tests /Database Tests)
+    
     ``bash
         $   ./vendor/bin/phpunit
 
-12.  For Running implemented Laravel Tests (Browser Tests)
+13.  For Running implemented Laravel Tests (Browser Tests)
+    
     ``bash
         $   composer require --dev laravel/dusk
         $   php artisan dusk:install
