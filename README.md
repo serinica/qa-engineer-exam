@@ -3,7 +3,7 @@
 | Requirements | Versions |
 | :----------: | :------: |
 |   LARAVEL    |   10.x    |
-|     PHP      | ^8.1.10  |
+|     PHP      | ^8.1.12  |
 |    MYSQL     |   ^10.4.25   |
 
 ## Configuration
@@ -72,4 +72,42 @@
     ```bash
         $   npm run dev
         $   npm run build
-    ```
+        $   npm i vite
+        $   php artisan serve
+
+11.  For Running implemented Laravel Tests (Unit Tests/ HTTP Tests /Database Tests)
+    ``bash
+        $   ./vendor/bin/phpunit
+
+12.  For Running implemented Laravel Tests (Browser Tests)
+    ``bash
+        $   composer require --dev laravel/dusk
+        $   php artisan dusk:install
+        $   php artisan dusk:chrome-driver
+        $   ./vendor/laravel/dusk/bin/chromedriver-linux
+        $   php artisan dusk
+
+## Requirements (Accomplished)
+-Unit Test
+
+    Test > Unit > ExamUnitTest.php
+    
+-HTTP Test
+
+    Test > Feature > ExampleTest.php
+    
+-Browser Test
+
+    Test > Browser 
+    
+-Database Test
+
+    Test > Feature > DatabaseTest.php
+    
+-Vue JS Tests
+
+    Added Vitetest
+    
+-CI/CD
+
+    Github Repository Actions > Laravel.yml
